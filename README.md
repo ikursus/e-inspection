@@ -17,10 +17,14 @@ Cara pasang
 
 5) Semak konfigurasi database di fail `.env`
 
-6) Tetapkan connection database. Jika guna MySQL, semak port default 3306
+6) Tetapkan connection database. Jika guna MySQL, semak port default `3306`
 
 7) Jalankan arahan di terminal:
-`php artisan migrate:fresh --seed` 
+`php artisan migrate`
+
+atau
+
+`php artisan migrate`
 
 8) Jika guna Laragon, pastikan sudah reload Apache untuk vhost creation bagi alamat projek.test
 
