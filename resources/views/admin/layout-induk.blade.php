@@ -170,7 +170,7 @@
             <!-- Brand -->
             <a class="navbar-brand d-flex align-items-center" href="{{ route('admin.dashboard') ?? '#' }}">
                 <i class="bi bi-shield-check me-2"></i>
-                E-Inspection Admin
+                {{ config('app.name') }} Admin
             </a>
             
             <!-- Mobile Toggle -->
@@ -211,11 +211,15 @@
                             <li><a class="dropdown-item" href=""><i class="bi bi-file-earmark-text me-2"></i>Laporan</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="">
-                            <i class="bi bi-gear me-1"></i>
-                            Pengaturan
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="bi bi-clipboard-check me-1"></i>
+                            Jabatan
                         </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{{ route('admin.jabatan.create') }}"><i class="bi bi-list-check me-2"></i>Daftar Jabatan</a></li>
+                            <li><a class="dropdown-item" href="{{ route('admin.jabatan.index') }}"><i class="bi bi-plus-circle me-2"></i>Rekod Jabatan</a></li>
+                        </ul>
                     </li>
                 </ul>
                 
@@ -344,7 +348,7 @@
             <div class="row align-items-center">
                 <div class="col-md-6">
                     <small class="text-muted">
-                        © {{ date('Y') }} E-Inspection System. All rights reserved.
+                        © {{ date('Y') }} {{ config('app.name') }} System. All rights reserved.
                     </small>
                 </div>
                 <div class="col-md-6 text-md-end">
