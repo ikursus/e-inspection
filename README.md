@@ -22,3 +22,10 @@ Cara pasang
 7) Jalankan arahan di terminal:
 `php artisan migrate:fresh --seed` 
 
+8) Jika guna Laragon, pastikan sudah reload Apache untuk vhost creation bagi alamat projek.test
+
+9) Akses ke projek menerusi link:
+`projek.test`
+dan
+`localhost/projek/public`
+
