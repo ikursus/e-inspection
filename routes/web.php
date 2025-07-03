@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\InspectionController;
 use App\Http\Controllers\Admin\JabatanController;
@@ -50,3 +51,11 @@ Route::put('/admin/jabatan/{id}/edit', [JabatanController::class, 'update'])->na
 
 // Route untuk delete data
 Route::delete('/admin/jabatan/{id}/delete', [JabatanController::class, 'destroy'])->name('admin.jabatan.destroy');
+
+// Routes untuk Users
+Route::get('/admin/users', [UserController::class, 'index'])->name('admin.users.index');
+Route::get('/admin/users/baru', [UserController::class, 'create'])->name('admin.users.create');
+Route::post('/admin/users/baru', [UserController::class, 'store'])->name('admin.users.store');
+Route::get('/admin/users/{id}/edit', [UserController::class, 'edit'])->name('admin.users.edit');
+Route::put('/admin/users/{id}', [UserController::class, 'update'])->name('admin.users.update');
+Route::delete('/admin/users/{id}/delete', [UserController::class, 'destroy'])->name('admin.users.destroy');

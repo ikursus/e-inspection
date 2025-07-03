@@ -190,6 +190,16 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
                             <i class="bi bi-people me-1"></i>
+                            Users
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{{ route('admin.users.index') }}"><i class="bi bi-list-check me-2"></i>Daftar Users</a></li>
+                            <li><a class="dropdown-item" href="{{ route('admin.users.create') }}"><i class="bi bi-person-plus me-2"></i>Tambah User</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="bi bi-people me-1"></i>
                             Pengguna
                         </a>
                         <ul class="dropdown-menu">
