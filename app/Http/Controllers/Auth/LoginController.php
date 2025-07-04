@@ -24,8 +24,8 @@ class LoginController extends Controller
             'remember' => 'boolean'
         ]);
 
-        return $data;
+        // return $data;
 
-        // return redirect()->route('user.dashboard');
+        return redirect()->route('user.dashboard');
     }
 }

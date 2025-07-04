@@ -199,18 +199,6 @@
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                            <i class="bi bi-people me-1"></i>
-                            Pengguna
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href=""><i class="bi bi-person-lines-fill me-2"></i>Daftar Pengguna</a></li>
-                            <li><a class="dropdown-item" href=""><i class="bi bi-person-plus me-2"></i>Tambah Pengguna</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="{{ route('admin.jabatan.index') ?? '#' }}"><i class="bi bi-briefcase me-2"></i>Kelola Jabatan</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
                             <i class="bi bi-clipboard-check me-1"></i>
                             Inspeksi
                         </a>
