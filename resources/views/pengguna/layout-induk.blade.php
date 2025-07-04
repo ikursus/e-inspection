@@ -149,7 +149,7 @@
                 <i class="fas fa-clipboard-check me-3"></i>
                 Inspeksi
             </a>
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{{ route('logout') }}">
                 <i class="fas fa-sign-out-alt me-3"></i>
                 Logout
             </a>
@@ -174,7 +174,8 @@
                         <li><a class="dropdown-item" href="#"><i class="fas fa-user me-2"></i>Profil</a></li>
                         <li><a class="dropdown-item" href="#"><i class="fas fa-cog me-2"></i>Pengaturan</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt me-2"></i>Logout</a></li>
+                        <li><a class="dropdown-item" href="{{ route('logout') }}"><i class="fas fa-sign-out-alt me-2"></i>Logout</a></li>
+
                     </ul>
                 </div>
             </div>

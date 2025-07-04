@@ -193,7 +193,7 @@
                             Users
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{{ route('admin.users.index') }}"><i class="bi bi-list-check me-2"></i>Daftar Users</a></li>
+                            <li><a class="dropdown-item" href="{{ route('admin.users.index') }}"><i class="bi bi-list-check me-2"></i>Rekod Users</a></li>
                             <li><a class="dropdown-item" href="{{ route('admin.users.create') }}"><i class="bi bi-person-plus me-2"></i>Tambah User</a></li>
                         </ul>
                     </li>
@@ -203,10 +203,9 @@
                             Inspeksi
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href=""><i class="bi bi-list-check me-2"></i>Daftar Inspeksi</a></li>
-                            <li><a class="dropdown-item" href=""><i class="bi bi-plus-circle me-2"></i>Buat Inspeksi</a></li>
+                            <li><a class="dropdown-item" href="{{ route('admin.inspections.index') }}"><i class="bi bi-list-check me-2"></i>Rekod Inspeksi</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href=""><i class="bi bi-file-earmark-text me-2"></i>Laporan</a></li>
+                            
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
@@ -263,7 +262,7 @@
                             <li><a class="dropdown-item" href=""><i class="bi bi-gear me-2"></i>Pengaturan</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li>
-                                <form method="POST" action="" class="d-inline">
+                                <form method="GET" action="{{ route('logout') }}" class="d-inline">
                                     @csrf
                                     <button type="submit" class="dropdown-item text-danger">
                                         <i class="bi bi-box-arrow-right me-2"></i>Keluar

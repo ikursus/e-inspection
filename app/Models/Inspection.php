@@ -17,6 +17,11 @@ class Inspection extends Model
         'status'
     ];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
     // Relation table inspection kepada table attachments
     public function attachments()
     {

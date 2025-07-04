@@ -66,5 +66,10 @@ Route::middleware(['auth', 'checkAdminRole'])->group(function () {
     Route::put('/admin/users/{id}', [UserController::class, 'update'])->name('admin.users.update');
     Route::delete('/admin/users/{id}/delete', [UserController::class, 'destroy'])->name('admin.users.destroy');
     
-
+    // Admin Inspections Routes
+    Route::prefix('admin')->name('admin.')->group(function () {
+        Route::get('/inspections', [App\Http\Controllers\Admin\InspectionController::class, 'index'])->name('inspections.index');
+        Route::get('/inspections/{id}', [App\Http\Controllers\Admin\InspectionController::class, 'show'])->name('inspections.show');
+        Route::delete('/inspections/{id}', [App\Http\Controllers\Admin\InspectionController::class, 'destroy'])->name('inspections.destroy');
+    });
 });
