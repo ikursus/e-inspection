@@ -22,51 +22,44 @@ Senarai Inspection
                     <tr>
                         <th>No.</th>
                         <th>Tarikh</th>
-                        <th>No. Rujukan</th>
-                        <th>Lokasi</th>
-                        <th>Status</th>
+                        <th>Masa</th>
+                        <th>Tempat</th>
+                        <th>Tempat Sub</th>
+                        <th>Remarks</th>
                         <th>Tindakan</th>
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach ($senaraiInspection as $item)
                     <tr>
-                        <td>1</td>
-                        <td>2024-03-15</td>
-                        <td>INS/2024/001</td>
-                        <td>Bangunan A, Tingkat 2</td>
-                        <td><span class="badge bg-success">Selesai</span></td>
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $item->tarikh }}</td>
+                        <td>{{ $item->masa }}</td>
+                        <td>{{ $item->tempat }}</td>
+                        <td>{{ $item->tempat_sub }}</td>
+                        <td>{{ $item->remarks }}</td>
                         <td>
-                            <a href="#" class="btn btn-sm btn-info"><i class="fas fa-eye"></i></a>
-                            <a href="#" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a>
-                            <a href="#" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
+                            <a href="" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a>
+                            <a href="" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
                         </td>
                     </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>2024-03-14</td>
-                        <td>INS/2024/002</td>
-                        <td>Bangunan B, Tingkat 1</td>
-                        <td><span class="badge bg-warning">Dalam Proses</span></td>
-                        <td>
-                            <a href="#" class="btn btn-sm btn-info"><i class="fas fa-eye"></i></a>
-                            <a href="#" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a>
-                            <a href="#" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>2024-03-13</td>
-                        <td>INS/2024/003</td>
-                        <td>Bangunan C, Tingkat 3</td>
-                        <td><span class="badge bg-danger">Belum Mula</span></td>
-                        <td>
-                            <a href="#" class="btn btn-sm btn-info"><i class="fas fa-eye"></i></a>
-                            <a href="#" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a>
-                            <a href="#" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
-                        </td>
-                    </tr>
+                    @endforeach
                 </tbody>
             </table>
+        </div>
+        <div class="d-flex justify-content-end mb-3">
+            <div class="form-group">
+                <select class="form-control" id="per-page-select" onchange="window.location.href='{{ route('user.inspections.rekod') }}?bilangan=' + this.value">
+                    <option value="3" {{ request('bilangan') == '3' ? 'selected' : '' }}>3 items per page</option>
+                    <option value="10" {{ request('bilangan') == '10' ? 'selected' : '' }}>10 items per page</option>
+                    <option value="25" {{ request('bilangan') == '25' ? 'selected' : '' }}>25 items per page</option>
+                    <option value="50" {{ request('bilangan') == '50' ? 'selected' : '' }}>50 items per page</option>
+                    <option value="100" {{ request('bilangan') == '100' ? 'selected' : '' }}>100 items per page</option>
+                </select>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center mt-3">
+            {{ $senaraiInspection->appends(['bilangan' => request('bilangan')])->links() }}
         </div>
     </div>
 </div>

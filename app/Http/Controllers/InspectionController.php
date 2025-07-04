@@ -3,13 +3,26 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Inspection;
 use Illuminate\Http\Request;
 
 class InspectionController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return view('pengguna.inspections.template-senarai-rekod');
+        // $senaraiInspection = Inspection::orderBy('id', 'desc')->get();
+        // $senaraiInspection = Inspection::latest()->get();
+        $senaraiInspection = Inspection::latest()->paginate($request->input('bilangan') ?? 5);
+
+
+        // Cara 1 attach data ke template menggunakan kaedah method ->with()
+        // return view('pengguna.inspections.template-senarai-rekod')->with('senaraiInspection', $senaraiInspection);
+
+        // Cara 2 attach data ke template menggunakan kaedah array
+        return view('pengguna.inspections.template-senarai-rekod', ['senaraiInspection' => $senaraiInspection]);
+
+        // Cara 3 attach data ke template
+        return view('pengguna.inspections.template-senarai-rekod', compact('senaraiInspection'));
     }
 
     public function create()
@@ -29,7 +42,10 @@ class InspectionController extends Controller
             'attachments.*' => ['nullable', 'file', 'mimes:pdf,doc,docx,jpg,jpeg,png', 'max:2048']
         ]);
 
-        return $data;
-        
+        // Simpan rekod inspection menggunakan model Inspection
+        $data['user_id'] = 3;
+        $inspection = Inspection::create($data);
+
+        return redirect()->route('user.inspections.rekod');        
     }
 }
