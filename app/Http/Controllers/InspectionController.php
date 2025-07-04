@@ -45,7 +45,7 @@ class InspectionController extends Controller
         ]);
 
         // Simpan rekod inspection menggunakan model Inspection
-        $data['user_id'] = 3;
+        $data['user_id'] = auth()->id();
         $inspection = Inspection::create($data);
 
         // Cara untuk simpan data attachment ke table attachments
@@ -87,7 +87,7 @@ class InspectionController extends Controller
         //     ->get();
 
         $inspection = Inspection::with('attachments')->find($id);
-        
+
         $attachments = $inspection->attachments;
 
         // Return view with inspection details
