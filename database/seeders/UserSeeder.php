@@ -18,6 +18,7 @@ class UserSeeder extends Seeder
             'email' => 'admin@admin.com',
             'password' => bcrypt('password'),
             'phone' => '0123456789',
+            'role' => 'admin',
             'jabatan_id' => 1,
             'status' => 'active',
             'created_at' => now(),

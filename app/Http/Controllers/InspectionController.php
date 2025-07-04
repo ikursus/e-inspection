@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use App\Models\Attachment;
 use App\Models\Inspection;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 
 class InspectionController extends Controller
 {
@@ -46,6 +48,49 @@ class InspectionController extends Controller
         $data['user_id'] = 3;
         $inspection = Inspection::create($data);
 
+        // Cara untuk simpan data attachment ke table attachments
+        if ($request->hasFile('attachments')) {
+
+            foreach ($request->file('attachments') as $file) {
+
+                $filename = $file->getClientOriginalName();
+                $file->storeAs('attachments', $filename, 'public');
+
+                // $inspection->attachments()->create([
+                //     'filename' => $filename,
+                //     'path' => 'attachments/' . $filename,
+                // ]);
+                // Kaedah 1 simpan attachment yang ada relation dengan inspection
+                Attachment::create([
+                    'inspection_id' => $inspection->id,
+                    'file' => $filename,
+                ]);
+            }
+
+        }
+
+
         return redirect()->route('user.inspections.rekod');        
+    }
+
+    public function show($id)
+    {
+        // $inspection = Inspection::find($id);
+        // Dapatkan data inspection dan attachment menerusi query builder join table
+        
+        // $inspection = DB::table('inspections')
+        //     ->where('id','=', $id)
+        //     ->first();
+
+        // $attachments = DB::table('attachments')
+        //     ->where('inspection_id', $id)
+        //     ->get();
+
+        $inspection = Inspection::with('attachments')->find($id);
+        
+        $attachments = $inspection->attachments;
+
+        // Return view with inspection details
+        return view('pengguna.inspections.template-show-rekod', compact('inspection', 'attachments'));
     }
 }

@@ -39,8 +39,7 @@ Senarai Inspection
                         <td>{{ $item->tempat_sub }}</td>
                         <td>{{ $item->remarks }}</td>
                         <td>
-                            <a href="" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a>
-                            <a href="" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
+                            <a href="{{ route('user.inspections.show', $item->id) }}" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a>
                         </td>
                     </tr>
                     @endforeach

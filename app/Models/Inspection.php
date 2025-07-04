@@ -16,4 +16,11 @@ class Inspection extends Model
         'remarks',
         'status'
     ];
+
+    // Relation table inspection kepada table attachments
+    public function attachments()
+    {
+        // return $this->hasMany(Attachment::class);
+        return $this->hasMany(Attachment::class, 'inspection_id', 'id');
+    }
 }
