@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Attachment;
 use App\Models\Inspection;
+use App\Mail\InspectionNew;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
 
 class InspectionController extends Controller
 {
@@ -69,6 +72,9 @@ class InspectionController extends Controller
 
         }
 
+        $admin = User::where('role', '=', 'admin')->first();
+        
+        Mail::to($admin->email)->send(new InspectionNew($inspection));
 
         return redirect()->route('user.inspections.rekod');        
     }

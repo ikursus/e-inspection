@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Inspection;
 use Illuminate\Http\Request;
+use PDF;
+use App\Exports\InspectionExport;
 use App\Http\Controllers\Controller;
+use Maatwebsite\Excel\Facades\Excel;
 
 class InspectionController extends Controller
 {
@@ -45,5 +48,19 @@ class InspectionController extends Controller
             return redirect()->route('admin.inspections.index')
                 ->with('error', 'Gagal menghapus inspeksi: ' . $e->getMessage());
         }
+    }
+
+    public function export()
+    {
+        return Excel::download(new InspectionExport, 'inspections.xlsx');
+    }
+
+    public function pdf()
+    {
+        $senaraiInspections = Inspection::with(['user', 'attachments'])->get();
+
+        $pdf = PDF::loadView('admin.inspections.template-pdf', compact('senaraiInspections'));
+
+        return $pdf->stream(date('YmdHis') . '-inspections-report.pdf');
     }
 }

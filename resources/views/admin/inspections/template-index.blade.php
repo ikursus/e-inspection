@@ -12,10 +12,10 @@
 
 @section('content')
 <div class="d-flex gap-2 mb-5">
-    <button class="btn btn-outline-secondary" onclick="window.print()">
+    <a href="{{ route('admin.inspections.pdf') }}" class="btn btn-outline-secondary">
         <i class="bi bi-printer me-1"></i>
         Print
-    </button>
+    </a>
     <button class="btn btn-outline-success" onclick="exportData()">
         <i class="bi bi-file-earmark-excel me-1"></i>
         Export

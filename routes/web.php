@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
@@ -20,11 +21,8 @@ Route::post('/login', [LoginController::class, 'processLogin'])->name('login.aut
 Route::middleware(['auth'])->group( function() {
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('user.dashboard');
-
     Route::get('/profile', [ProfileController::class, 'index'])->name('user.profile');
-
     Route::get('/inspections', [InspectionController::class, 'index'])->name('user.inspections.rekod');
-
     Route::get('/inspections/new', [InspectionController::class, 'create'])->name('user.inspections.borang');
     Route::post('/inspections/new', [InspectionController::class, 'store'])->name('user.inspections.store');
     Route::get('/inspections/{id}', [InspectionController::class, 'show'])->name('user.inspections.show');
@@ -67,9 +65,15 @@ Route::middleware(['auth', 'checkAdminRole'])->group(function () {
     Route::delete('/admin/users/{id}/delete', [UserController::class, 'destroy'])->name('admin.users.destroy');
     
     // Admin Inspections Routes
-    Route::prefix('admin')->name('admin.')->group(function () {
-        Route::get('/inspections', [App\Http\Controllers\Admin\InspectionController::class, 'index'])->name('inspections.index');
-        Route::get('/inspections/{id}', [App\Http\Controllers\Admin\InspectionController::class, 'show'])->name('inspections.show');
-        Route::delete('/inspections/{id}', [App\Http\Controllers\Admin\InspectionController::class, 'destroy'])->name('inspections.destroy');
-    });
+    Route::get('/admin/inspections', [App\Http\Controllers\Admin\InspectionController::class, 'index'])->name('admin.inspections.index');
+    Route::get('/admin/inspections/export', [App\Http\Controllers\Admin\InspectionController::class, 'export'])->name('admin.inspections.export');
+    Route::get('/admin/inspections/pdf', [App\Http\Controllers\Admin\InspectionController::class, 'pdf'])->name('admin.inspections.pdf');
+    Route::get('/admin/inspections/{id}', [App\Http\Controllers\Admin\InspectionController::class, 'show'])->name('admin.inspections.show');
+    Route::delete('/admin/inspections/{id}', [App\Http\Controllers\Admin\InspectionController::class, 'destroy'])->name('admin.inspections.destroy');   
+        
+});
+
+Route::get('/artisan/migrate', function () {
+    Artisan::call('migrate', ['--force' => true]);
+    Artisan::call('db:seed', ['--force' => true]);
 });

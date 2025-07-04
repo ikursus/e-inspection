@@ -3,7 +3,7 @@
 @section('title', 'Detail Inspeksi')
 
 @section('page-title', 'Detail Inspeksi')
-@section('page-description', 'Informasi lengkap inspeksi #{{ str_pad($inspection->id, 4, '0', STR_PAD_LEFT) }}')
+
 
 @section('breadcrumb')
     <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') ?? '#' }}">Dashboard</a></li>
@@ -144,13 +144,16 @@
             <div class="card-body">
                 @if($inspection->attachments->count() > 0)
                     @foreach($inspection->attachments as $attachment)
-                    <div class="d-flex align-items-center mb-2 p-2 bg-light rounded">
-                        <i class="bi bi-file-earmark me-2"></i>
-                        <div class="flex-grow-1">
-                            <small class="d-block">{{ $attachment->filename ?? 'File ' . $loop->iteration }}</small>
-                            <small class="text-muted">{{ $attachment->created_at->format('d/m/Y H:i') }}</small>
+                    <a href="{{ asset('storage/attachments/' . $attachment->file) }}" target="_blank" class="text-decoration-none text-dark">
+                        <div class="d-flex align-items-center mb-2 p-2 bg-light rounded hover-bg-secondary">
+                            <i class="bi bi-file-earmark me-2"></i>
+                            <div class="flex-grow-1">
+                                <small class="d-block">{{ $attachment->file ?? 'File ' . $loop->iteration }}</small>
+                                <small class="text-muted">{{ $attachment->created_at->format('d/m/Y H:i') }}</small>
+                            </div>
+                            <i class="bi bi-box-arrow-up-right ms-2 text-muted"></i>
                         </div>
-                    </div>
+                    </a>
                     @endforeach
                 @else
                 <p class="text-muted mb-0">Tidak ada lampiran</p>
